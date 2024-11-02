@@ -9,7 +9,7 @@ import org.example.model.html.HTMLDocument;
 
 @Data
 @AllArgsConstructor
-public class ReadCommand implements Command, EditIOTypeCommand {
+public class ReadCommand implements EditIOTypeCommand {
 //    read filepath
 
 //    filepath 为读取文件的路径名。

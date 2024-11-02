@@ -7,7 +7,7 @@ import org.example.model.html.HTMLDocument;
 
 @Data
 @AllArgsConstructor
-public class EditTextCommand implements Command, EditIOTypeCommand {
+public class EditTextCommand implements EditIOTypeCommand {
 //    edit-text element [newTextContent]
 //    element 为要编辑元素的 id。
     private String elementId;

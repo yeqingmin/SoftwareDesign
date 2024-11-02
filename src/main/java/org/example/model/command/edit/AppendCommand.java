@@ -8,7 +8,7 @@ import org.example.model.html.HTMLDocument;
 
 @Data
 @AllArgsConstructor
-public class AppendCommand implements Command , EditIOTypeCommand {
+public class AppendCommand implements EditIOTypeCommand {
 //    append tagName idValue parentElement [textContent]
 //    tagName 为新元素的元素标签。
     private String tagName;

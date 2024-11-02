@@ -2,6 +2,9 @@ package org.example.model.command;
 
 import lombok.Data;
 import org.example.model.command.edit.EditIOTypeCommand;
+import org.example.model.command.io.InitCommand;
+import org.example.model.command.io.ReadCommand;
+import org.example.model.command.io.SaveCommand;
 import org.example.model.html.HTMLDocument;
 import org.example.utils.CommandParser;
 import org.jetbrains.annotations.NotNull;
@@ -55,15 +58,19 @@ public class CommandInvoker {
         }else{
             //不断pop，直到pop出了editIOTypeCommand
             Command command = undoStack.pop();
-            while(!(command instanceof EditIOTypeCommand)){
+            while(!(command instanceof EditIOTypeCommand)&&!undoStack.empty()){
                 command=undoStack.pop();
             }
             // 只有editTypeCommand才支持undo，否则跳过,(虽然只有edit类型支持undo，
             // 但是为了保证执行IO类型指令的时候不会跳过它导致在他前面的edit类指令被压入压出栈导致问题，而且可以打印警告，
             // 所以这两类型都有undo方法
-            EditIOTypeCommand editTypeCommand = (EditIOTypeCommand) command;
-            editTypeCommand.undo();
-            redoStack.push(command);
+            if(command instanceof EditIOTypeCommand){
+                EditIOTypeCommand editTypeCommand = (EditIOTypeCommand) command;
+                editTypeCommand.undo();
+                redoStack.push(command);
+            }else {
+                System.out.println("NO COMMAND CAN BE UNDONE");
+            }
         }
     }
     public void redo(){
@@ -74,8 +81,12 @@ public class CommandInvoker {
             //redo栈里面只可能有编辑类指令，所以不用不停地pop
             if(command instanceof EditIOTypeCommand){
                 EditIOTypeCommand editTypeCommand=(EditIOTypeCommand) command;
-                editTypeCommand.execute();
-                undoStack.push(command);
+                if(command instanceof ReadCommand||command instanceof InitCommand||command instanceof SaveCommand){
+                    System.out.println("IO Command do not support redo!");
+                }else{
+                    editTypeCommand.execute();
+                    undoStack.push(command);
+                }
             }
         }
     }

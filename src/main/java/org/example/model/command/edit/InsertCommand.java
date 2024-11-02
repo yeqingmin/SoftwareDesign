@@ -8,7 +8,7 @@ import org.example.model.html.HTMLTag;
 
 @Data
 @AllArgsConstructor
-public class InsertCommand implements Command, EditIOTypeCommand {
+public class InsertCommand implements EditIOTypeCommand {
 //    命令格式：insert tagName idValue insertLocation [textContent]
 //    tagName 为新元素的元素标签。
     private String tagName;

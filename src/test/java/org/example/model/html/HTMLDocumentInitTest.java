@@ -10,10 +10,6 @@ import org.example.utils.HTMLParser;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.io.InputStream;
-import java.io.FileNotFoundException;
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -29,27 +25,16 @@ public class HTMLDocumentInitTest {
     private Printer<HTMLTag> printer;
 
     @BeforeEach
-    public void setUp() throws HTMLParseException, IOException {
-        document = new HTMLDocument();
-        printer = new IndentPrinter(4);
+    public void setUp() throws IOException, HTMLParseException {
+        String html= HTMLParser.readHTMLFile("src/test/resources/testfile/test_one.html");
+        document= HTMLParser.parseHTML(html);
+        printer= new IndentPrinter(4);
     }
 
     @Test
-    public void initTest_ResourceNotFound() {
-        // Simulate the resource not being found
-        InputStream inputStream = null;
-        try {
-            inputStream = getClass().getClassLoader().getResourceAsStream("template/nonexistent.html");
-            fail("Expected FileNotFoundException not thrown");
-        } finally {
-            try {
-                if (inputStream != null) {
-                    inputStream.close();
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
+    public void initTest() {
+        document.init();
+        System.out.println(printer.format(document.getRoot()));
     }
 
     @Test

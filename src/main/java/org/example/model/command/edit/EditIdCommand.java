@@ -7,7 +7,7 @@ import org.example.model.html.HTMLDocument;
 
 @Data
 @AllArgsConstructor
-public class EditIdCommand implements Command , EditIOTypeCommand {
+public class EditIdCommand implements EditIOTypeCommand {
 //    edit-id oldId newId
 //    oldId 为现有元素的 id。
     private String oldId;

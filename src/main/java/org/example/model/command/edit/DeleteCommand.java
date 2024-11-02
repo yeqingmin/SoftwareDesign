@@ -8,7 +8,7 @@ import org.example.model.html.HTMLTag;
 
 @Data
 @AllArgsConstructor
-public class DeleteCommand implements Command , EditIOTypeCommand {
+public class DeleteCommand implements EditIOTypeCommand {
 //    delete element
 //    element 为要删除元素的 id。
     private String elementId;

@@ -22,8 +22,14 @@ public class CommandParser {
         String[] commandDetails =commandStr.split("\\s+");
         switch (commandDetails[0]){
             case "insert":
-                if(commandDetails.length==5) {
-                    command = new InsertCommand(commandDetails[1], commandDetails[2], commandDetails[3], commandDetails[4],receiver);
+                if(commandDetails.length>=5) {
+                    StringBuilder text= new StringBuilder();
+                    int i=4;
+                    while(i<commandDetails.length){
+                        text.append(" ").append(commandDetails[i]);
+                        i++;
+                    }
+                    command = new InsertCommand(commandDetails[1], commandDetails[2], commandDetails[3], text.toString(),receiver);
                 }else if(commandDetails.length==4){
                     //如果可选选项为空，则默认为空字符串
                     command = new InsertCommand(commandDetails[1], commandDetails[2], commandDetails[3], "",receiver);
@@ -32,8 +38,14 @@ public class CommandParser {
                 }
                 break;
             case "append":
-                if(commandDetails.length==5) {
-                    command = new AppendCommand(commandDetails[1], commandDetails[2], commandDetails[3], commandDetails[4],receiver);
+                if(commandDetails.length>=5) {
+                    StringBuilder text= new StringBuilder();
+                    int i=4;
+                    while(i<commandDetails.length){
+                        text.append(" ").append(commandDetails[i]);
+                        i++;
+                    }
+                    command = new AppendCommand(commandDetails[1], commandDetails[2], commandDetails[3], text.toString(),receiver);
                 }else if(commandDetails.length==4){
                     //如果可选选项为空，则默认为空字符串
                     command = new AppendCommand(commandDetails[1], commandDetails[2], commandDetails[3], "",receiver);
@@ -49,8 +61,14 @@ public class CommandParser {
                 }
                 break;
             case "edit-text":
-                if(commandDetails.length==3) {
-                    command = new EditTextCommand(commandDetails[1], commandDetails[2],receiver);
+                if(commandDetails.length>=3) {
+                    StringBuilder text= new StringBuilder();
+                    int i=2;
+                    while(i<commandDetails.length){
+                        text.append(" ").append(commandDetails[i]);
+                        i++;
+                    }
+                    command = new EditTextCommand(commandDetails[1], text.toString(),receiver);
                 }else if(commandDetails.length==2){
                    command = new EditTextCommand(commandDetails[1], "",receiver);
                 } else {

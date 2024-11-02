@@ -8,7 +8,7 @@ import org.example.model.html.HTMLDocument;
 
 @Data
 @AllArgsConstructor
-public class SaveCommand implements Command, EditIOTypeCommand {
+public class SaveCommand implements EditIOTypeCommand {
 //    save filepath
 
 //    filepath 为写入文件的路径名。

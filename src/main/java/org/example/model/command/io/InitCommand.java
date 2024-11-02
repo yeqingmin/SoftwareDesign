@@ -7,7 +7,7 @@ import org.example.model.command.edit.EditIOTypeCommand;
 import org.example.model.html.HTMLDocument;
 @Data
 @AllArgsConstructor
-public class InitCommand implements Command, EditIOTypeCommand {
+public class InitCommand implements EditIOTypeCommand {
     //管理的html文档
     private HTMLDocument htmlDocument;
     @Override

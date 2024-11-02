@@ -12,7 +12,7 @@ import java.io.IOException;
 
 import static org.junit.Assert.assertThrows;
 
-public class HTMLDocumentTest {
+public class HTMLDocumentAppendTest {
     private HTMLDocument document;
     private Printer<HTMLTag> printer;
     @BeforeEach
@@ -38,13 +38,4 @@ public class HTMLDocumentTest {
         System.out.println(printer.format(document.getRoot()));
     }
 
-    @Test
-    public void insertTest(){
-        document.insert("p", "paragraph", "container", "new paragraph");
-        System.out.println(printer.format(document.getRoot()));
-    }
-    @Test
-    public void spellCheckTest(){
-        document.spellCheck();
-    }
 }
